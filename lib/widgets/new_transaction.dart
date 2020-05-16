@@ -28,7 +28,9 @@ class NewTransaction extends StatelessWidget {
 
               child: Text('Add Transaction'),
               onPressed: () {
-                addTx(titleController.text, double.parse(amountController.text),
+                addTx(
+                  titleController.text,
+                  double.parse(amountController.text), //convert amount to double
                 );
               },
               textColor: Colors.purple,
