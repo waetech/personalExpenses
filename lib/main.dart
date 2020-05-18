@@ -58,53 +58,60 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
 
-  void _startAddNewTransaction(BuildContext ctx){
-    showModalBottomSheet(
-        context: ctx,
-        builder: (_) {
-      return NewTransaction(_addNewTransaction);
-    });
-  }
+    void _startAddNewTransaction(BuildContext ctx) {
+      showModalBottomSheet(
+          context: ctx,
+          builder: (_) {
+            return GestureDetector(
+              onTap: () {},
+              child: NewTransaction(_addNewTransaction),
+              behavior: HitTestBehavior.opaque,
+            );
+          });
+    }
 
     @override
     Widget build(BuildContext context) {
+      List<Transaction> _userTransactions;
       return Scaffold(
         appBar: AppBar(
           title: Text('Flutter App'),
           actions: <Widget>[
             IconButton(icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),)
-            ,
+              onPressed: () => _startAddNewTransaction(context),
+            ),
           ],
         ),
         body: SingleChildScrollView(
           child: Column(
-           // mainAxisAlignment: MainAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    color: Colors.blue,
-                    child: Container(
-                      width: double.infinity,
-                      child: Text('Chart'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      color: Colors.blue,
+                      child: Container(
+                        width: double.infinity,
+                        child: Text('Chart'),
+                      ),
+                      elevation: 5,
                     ),
-                    elevation: 5,
                   ),
                 ),
               ),
-            ),
               TransactionList(_userTransactions),
             ],
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(child: Icon(Icons.add),
-        onPressed: () => _startAddNewTransaction(context),),
+          onPressed: () => _startAddNewTransaction(context),
+        ),
       );
     }
+  }
